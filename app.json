@@ -12,24 +12,18 @@
   "env": {
     "TELEGRAM_BOT_TOKEN": {
       "description": "Your Telegram bot token from BotFather (e.g., 123456:ABC-DEF1234ghIkl-xyz)",
-      "value": "",
       "required": true
     },
     "MONGODB_URI": {
       "description": "MongoDB connection URI (e.g., mongodb+srv://user:pass@cluster0.mongodb.net/dbname)",
-      "value": "",
       "required": true
-  {
-  "env": {
+    },
     "XAI_API_KEY": {
       "description": "API key for xAI service",
       "required": true
-    }
-  }
-}
+    },
     "BASE_URL": {
-      "description": "Heroku app URL (automatically set to https://<app-name>.herokuapp.com)",
-      "value": "https://$HEROKU_APP_NAME.herokuapp.com",
+      "description": "Heroku app URL (e.g., https://your-app-name.heroku.app)",
       "required": true
     }
   },
@@ -44,5 +38,9 @@
       "url": "heroku/nodejs"
     }
   ],
-  "stack": "heroku-22"
+  "stack": "heroku-24",
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  }
 }
