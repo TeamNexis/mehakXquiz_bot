@@ -19,12 +19,14 @@
       "description": "MongoDB connection URI (e.g., mongodb+srv://user:pass@cluster0.mongodb.net/dbname)",
       "value": "",
       "required": true
-    },
-    "AI_API_KEY": {
-      "description": "HuggingFace API key for AI explanations (optional)",
-      "value": "",
-      "required": false
-    },
+  {
+  "env": {
+    "XAI_API_KEY": {
+      "description": "API key for xAI service",
+      "required": true
+    }
+  }
+}
     "BASE_URL": {
       "description": "Heroku app URL (automatically set to https://<app-name>.herokuapp.com)",
       "value": "https://$HEROKU_APP_NAME.herokuapp.com",
