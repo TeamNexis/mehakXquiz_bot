@@ -26,6 +26,9 @@ Message BotFather on Telegram.
 Send /newbot, set display name (e.g., "MehakX Quiz Bot"), and username @mehakXquiz_bot (must be unique; try @MehakXQuizBot2025 if taken).
 Copy the bot token and add it to .env as TELEGRAM_BOT_TOKEN.
 
+## 🚀 Deploy on Heroku 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/TeamNexis/mehakXquiz_bot)
+
 Setup
 
 Clone the repository:git clone https://github.com/TeamNexis/mehakXquiz_bot.git
