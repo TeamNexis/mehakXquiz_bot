@@ -1,27 +1,27 @@
-const axios = require('axios');
+require('dotenv').config();
+const fetch = require('node-fetch');
 
-async function getExplanation(questionText, correctAnswer) {
-  if (!process.env.AI_API_KEY) {
-    return 'Explanation not available due to missing AI API key.';
-  }
-
-  const apiUrl = 'https://api-inference.huggingface.co/models/mistralai/Mixtral-8x7B-Instruct-v0.1';
-  const headers = {
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${ 7xAI_API_KEY}`,
-  };
-  const data = {
-    inputs: `Explain why the correct answer to this question is "${correctAnswer}": ${questionText}`,
-    parameters: { max_length: 150 },
-  };
-
+async function explainWithAI(prompt) {
   try {
-    const response = await axios.post(apiUrl, data, { headers });
-    return response.data[0].generated_text.trim();
-  } catch (err) {
-    console.error(`Error getting explanation: ${err.message}`);
-    return 'Explanation not available due to API error.';
+    const response = await fetch('https://api.x.ai/v1/explain', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.XAI_API_KEY}`,
+      },
+      body: JSON.stringify({ prompt }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`API request failed: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.explanation;
+  } catch (error) {
+    console.error('Error in explainWithAI:', error);
+    throw error;
   }
 }
 
-module.exports = { getExplanation };
+module.exports = { explainWithAI };
