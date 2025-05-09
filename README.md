@@ -1,5 +1,5 @@
 mehakXquiz_bot
-An open-source Telegram quiz bot for NEET Design stream students, offering dynamic questions, AI explanations, and personalized learning. Built with Node.js, Telegraf.js, and MongoDB, it supports deployment on Heroku, VPS, or other free-tier platforms.
+An open-source Telegram quiz bot for NEET Design stream students, offering dynamic questions, AI explanations, and personalized learning. Built with Node.js, Telegraf.js, and MongoDB, it supports deployment on Heroku with a paid subscription or other platforms like VPS.
 Features
 
 Dynamic Question Fetching: Sources NEET (Physics, Chemistry, Biology) and Design Aptitude questions from public online resources.
@@ -18,16 +18,14 @@ Prerequisites
 Node.js 16.x
 MongoDB (e.g., MongoDB Atlas)
 Telegram Bot Token (from BotFather)
+Heroku subscription (e.g., Hobby or Standard plan)
 Optional: HuggingFace API key for AI explanations
 
 Bot Creation
 
 Message BotFather on Telegram.
 Send /newbot, set display name (e.g., "MehakX Quiz Bot"), and username @mehakXquiz_bot (must be unique; try @MehakXQuizBot2025 if taken).
-Copy the bot token and add it to .env as TELEGRAM_BOT_TOKEN.
-
-## 🚀 Deploy on Heroku 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/TeamNexis/mehakXquiz_bot)
+Copy the bot token and add it to environment variables.
 
 Setup
 
@@ -35,13 +33,13 @@ Clone the repository:git clone https://github.com/TeamNexis/mehakXquiz_bot.git
 cd mehakXquiz_bot
 
 
-Create a .env file based on .env.example:TELEGRAM_BOT_TOKEN=your_bot_token
+Install dependencies:npm install
+
+
+Create a .env file for local testing (based on .env.example):TELEGRAM_BOT_TOKEN=your_bot_token
 MONGODB_URI=your_mongo_uri
 AI_API_KEY=optional
-BASE_URL=https://your-app.herokuapp.com
-
-
-Install dependencies:npm install
+BASE_URL=http://localhost:3000
 
 
 Run locally:npm start
@@ -49,34 +47,52 @@ Run locally:npm start
 
 
 Deployment
-Heroku
+One-Click Deployment to Heroku
+Deploy the bot to Heroku with a single click using your Heroku subscription (Hobby or higher plan required):
+
+
+Click the button above.
+Enter a unique app name (e.g., mehakxquiz-bot).
+Provide the following Config Vars:
+TELEGRAM_BOT_TOKEN: Your Telegram bot token.
+MONGODB_URI: Your MongoDB connection URI.
+AI_API_KEY: (Optional) HuggingFace API key.
+BASE_URL: Automatically set to https://<app-name>.herokuapp.com.
+
+
+Select your Heroku subscription plan (e.g., Hobby for ~$7/month).
+Click Deploy App.
+
+## 🚀 Deploy on Heroku 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/TeamNexis/mehakXquiz_bot)
+
+Once deployed, test the bot on Telegram with /start or /quiz.
+
+Manual Deployment to Heroku
 
 Install Heroku CLI and log in:heroku login
 
 
-Create a Heroku app:heroku create mehakxquiz-bot
+Create a Heroku app using app.json:heroku create mehakxquiz-bot --json app.json
 
 
-Set environment variables:heroku config:set TELEGRAM_BOT_TOKEN=your_bot_token
-heroku config:set MONGODB_URI=your_mongo_uri
-heroku config:set AI_API_KEY=optional
+Set environment variables:heroku config:set TELEGRAM_BOT_TOKEN=your_bot_token --app mehakxquiz-bot
+heroku config:set MONGODB_URI=your_mongo_uri --app mehakxquiz-bot
+heroku config:set AI_API_KEY=your_huggingface_api_key --app mehakxquiz-bot
 
 
-Deploy:git init
-git add .
-git commit -m "Initial commit"
-heroku git:remote -a mehakxquiz-bot
+Deploy:heroku git:remote -a mehakxquiz-bot
 git push heroku main
 
 
-Verify:heroku logs --tail
+Scale dynos (Hobby or higher, as per your subscription):heroku ps:scale web=1 --app mehakxquiz-bot
 
 
-Scale dynos:heroku ps:scale web=1
+Verify:heroku logs --tail --app mehakxquiz-bot
 
 
 
-Note: Heroku's free tier may sleep after 30 minutes of inactivity, interrupting the bot. Use a pinger service or upgrade to a paid dyno for continuous operation.
+Note: Your Heroku subscription ensures dynos don’t sleep, providing continuous operation. Adjust dyno type (e.g., standard-1x) in the Heroku Dashboard if needed.
 VPS (via Docker)
 
 Install Docker on your VPS.
@@ -92,16 +108,14 @@ Run the container with environment variables:docker run -d \
   mehakxquiz-bot
 
 
-Verify the container is running:docker ps
+Verify:docker ps
 
 
 
-Other Platforms
-The bot is compatible with free-tier platforms like Railway or Render. Adjust environment variables and deployment steps per platform documentation.
 Hosting on GitHub
 
-Create a new repository on GitHub under TeamNexis.
-Initialize Git and push the code:git init
+Create a repository on GitHub under TeamNexis.
+Push the code:git init
 git add .
 git commit -m "Initial commit"
 git remote add origin https://github.com/TeamNexis/mehakXquiz_bot.git
@@ -109,20 +123,19 @@ git branch -M main
 git push -u origin main
 
 
-(Optional) Enable GitHub Actions for CI/CD or connect to Heroku for automatic deploys.
 
 Notes
 
-Question Sourcing: The questionFetcher.js placeholder requires implementation for specific source formats (e.g., PDF parsing for NEET papers). Ensure compliance with source terms of service.
-AI Explanations: Uses HuggingFace's free-tier API; provide an API key for enhanced explanations or rely on fallbacks.
-Future-Proofing: Modular structure and MIT License support community contributions and long-term maintenance.
+Question Sourcing: Implement parseQuestions in questionFetcher.js for specific source formats (e.g., NEET PDFs). Ensure compliance with source terms.
+AI Explanations: Provide a HuggingFace API key for enhanced explanations or rely on fallbacks.
+Heroku Subscription: Use your subscription’s dyno types (e.g., Hobby, Standard) for reliable performance. Monitor usage in the Heroku Dashboard.
 
 Contributing
 Contributions are welcome! Please:
 
 Open an issue to discuss changes.
 Fork the repository and create a pull request.
-Follow the code style and include tests where applicable.
+Follow the code style and include tests.
 
 License
 This project is licensed under the MIT License. See LICENSE for details.
