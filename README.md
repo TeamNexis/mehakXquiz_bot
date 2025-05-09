@@ -18,7 +18,7 @@ Prerequisites
 Node.js 16.x
 MongoDB (e.g., MongoDB Atlas)
 Telegram Bot Token (from BotFather)
-Heroku subscription (e.g., Hobby or Standard plan)
+Heroku subscription (e.g., Standard-1X, Basic, or Standard-2X plan)
 Optional: HuggingFace API key for AI explanations
 
 Bot Creation
@@ -48,7 +48,11 @@ Run locally:npm start
 
 Deployment
 One-Click Deployment to Heroku
-Deploy the bot to Heroku with a single click using your Heroku subscription (Hobby or higher plan required):
+
+## 🚀 Deploy on Heroku 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/TeamNexis/mehakXquiz_bot)
+
+Deploy the bot to Heroku with a single click using your Heroku subscription (Standard-1X, Basic, or other compatible plan required):
 
 
 Click the button above.
@@ -60,12 +64,8 @@ AI_API_KEY: (Optional) HuggingFace API key.
 BASE_URL: Automatically set to https://<app-name>.herokuapp.com.
 
 
-Select your Heroku subscription plan (e.g., Hobby for ~$7/month).
+Select your Heroku subscription’s dyno type (e.g., Standard-1X for ~$25/month, Basic for ~$7/month).
 Click Deploy App.
-
-## 🚀 Deploy on Heroku 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/TeamNexis/mehakXquiz_bot)
-
 Once deployed, test the bot on Telegram with /start or /quiz.
 
 Manual Deployment to Heroku
@@ -85,14 +85,14 @@ Deploy:heroku git:remote -a mehakxquiz-bot
 git push heroku main
 
 
-Scale dynos (Hobby or higher, as per your subscription):heroku ps:scale web=1 --app mehakxquiz-bot
+Scale dynos (Standard-1X or other compatible type, as per your subscription):heroku ps:scale web=1:Standard-1X --app mehakxquiz-bot
 
 
 Verify:heroku logs --tail --app mehakxquiz-bot
 
 
 
-Note: Your Heroku subscription ensures dynos don’t sleep, providing continuous operation. Adjust dyno type (e.g., standard-1x) in the Heroku Dashboard if needed.
+Note: Your Heroku subscription provides access to dyno types like Standard-1X, Basic, or Standard-2X. If Standard-1X is unavailable, use Basic or another compatible type listed by Heroku. Adjust dyno type in the Heroku Dashboard or CLI if needed.
 VPS (via Docker)
 
 Install Docker on your VPS.
@@ -128,7 +128,7 @@ Notes
 
 Question Sourcing: Implement parseQuestions in questionFetcher.js for specific source formats (e.g., NEET PDFs). Ensure compliance with source terms.
 AI Explanations: Provide a HuggingFace API key for enhanced explanations or rely on fallbacks.
-Heroku Subscription: Use your subscription’s dyno types (e.g., Hobby, Standard) for reliable performance. Monitor usage in the Heroku Dashboard.
+Heroku Subscription: Use your subscription’s dyno types (e.g., Standard-1X, Basic). Monitor usage in the Heroku Dashboard to manage costs.
 
 Contributing
 Contributions are welcome! Please:
