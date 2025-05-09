@@ -23,8 +23,13 @@
       "required": true
     },
     "BASE_URL": {
-      "description": "Heroku app URL (e.g., https://your-app-name.heroku.app)",
+      "description": "Heroku app URL for Telegram webhook (e.g., https://mehakxquiz-bot.heroku.app)",
       "required": true
+    },
+    "PORT": {
+      "description": "Port for the Express server (default: 3000)",
+      "value": "3000",
+      "required": false
     }
   },
   "formation": {
